@@ -1,0 +1,73 @@
+
+body {
+    background-image: url("/src/img/background-img.jpg");
+    background-size: cover;      
+  
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.342);
+    backdrop-filter: blur(5px);
+}
+
+main .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 450px;
+    background-color: rgba(255, 255, 255, 0.362);
+    border-radius: 10px;
+    box-shadow: 5px , 5px, 15px black;
+    
+}
+main .card h1 {
+    margin-top: -100px;
+    margin-bottom: 80px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 5px;
+}
+
+main input {
+    width: 250px;
+    height: 25px;
+    border-width: 0;
+    border-radius: 3px;
+    outline: 0;
+    padding-left: 10px;
+}
+
+main label {
+    font-size: 16px;
+    margin: 10px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 5px, 5px, 15px black;
+    letter-spacing: 5px;   
+}
+
+main button {
+    border-width: 0;
+    margin: 20px;
+    width: 100px;
+    height: 30px;
+    border-radius: 3px;
+    background-color:  white;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #2c7e43;   
+}
+
+main button:hover {
+    background-color: #93dda8;
+    color: white;
+}
+
