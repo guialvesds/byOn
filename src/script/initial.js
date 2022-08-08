@@ -9,8 +9,13 @@ let btnExcluir = document.querySelector("#btnExcluir");
 let chekEnt = document.querySelector("#ent");
 let chekSaid = document.querySelector("#said");
 
+
 btnAdd.addEventListener("click", (event) => {
   event.preventDefault();
+
+  if(inputDescricao.value == '' || inputValor== '' || chekEnt.checked == false){
+    alert('É necessário preecher todos os campos!')
+  } else{
 
   let form = document.querySelector("#inputForm");
 
@@ -25,6 +30,7 @@ btnAdd.addEventListener("click", (event) => {
   tabela.appendChild(contaTr);
 
   form.reset();
+}
 });
 
 function obterContas(form) {
