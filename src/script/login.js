@@ -7,6 +7,7 @@ let btnLogin = document.querySelector("#btnLogin");
 let users = [
   { user: "guilherme", password: "123456789" },
   { user: "admin", password: "admin" },
+  { user: "teste", password: "admin" },
 ];
 
 function entrar() {
