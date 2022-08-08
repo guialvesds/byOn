@@ -1,23 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/initial.css">
-    <link rel="stylesheet" href="../styles/reset.css">
-    <link rel="shortcut icon" href="../img/page-ico.ico" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/initial.css" />
+    <link rel="shortcut icon" href="../img/page-ico.ico" type="image/x-icon" />
     <title>ByOn | Initial</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-
+      <div class="cardFinance">
+        <div class="title">
+          <img src="../img/money-add-icon.png" alt="#" />
+          <h1 class="nomeCarteira">Entrada</h1>
+        </div>
+        <h2 class="valorCarteira" id="saldEntrada">R$ 00,00</h2>
+      </div>
+      <div class="cardFinance">
+        <div class="title">
+          <img src="../img/money-delete-icon.png" alt="#" />
+          <h1 class="nomeCarteira" >Saídas</h1>
+        </div>
+        <h2 class="valorCarteira" id="saldSainda">R$ 00,00</h2>
+      </div>
+      <div class="cardFinance">
+        <div class="title">
+          <img src="../img/Money-icon.png" alt="#" />
+          <h1 class="nomeCarteira" >Saldo</h1>
+        </div>
+        <h2 class="valorCarteira" id="saldSaldo">R$ 00,00</h2>
+      </div>
     </header>
     <main>
-        <h1>New Screen!</h1>
+        <form id="inputForm">
+            <input type="text" name="inpuText" id="inpuText"  placeholder="Ex: Pagamento Conta"/>
+            <input type="number" name="inputNum" id="inputNum" placeholder="EX: 59,90"/>
+            <label for="ent">Entrada</label>
+            <input type="checkbox" name="ent" id="ent" value="none" />
+            <label for="said">Saída</label>
+            <input type="checkbox" name="said" id="said" />
+            <button type="submit" id="btnAdd">Adicionar</button>
+        </form>    
+        <div class="tableSection">
+            <section>
+                <div class="tbl-header">
+                  <table cellpadding="0" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Descrição</th>
+                        <th>Data Origem</th>
+                        <th>Preço</th>
+                        <th>Tipo</th>
+                        <!-- <th>Ação</th> -->
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+                <div class="tbl-content">
+                  <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody id="tabela-contas">
+                      <tr class="itemConta">
+                        <td class="nome">Pagamento conta Anná</td>
+                        <td class="data">07/08/2022</td>
+                        <td class="preco">50.00</td>
+                        <td class="tipo">Entrada</td>
+                        <!-- <td><button class="btnExcluir" type="submit">Excluir</button></td> -->
+                      </tr>  
+                      <tr class="itemConta">
+                        <td class="nome">Pagamento conta Anná</td>
+                        <td class="data">07/08/2022</td>
+                        <td class="preco">50.00</td>
+                        <td class="tipo">Saida</td>
+                        <!-- <td><button class="btnExcluir" type="submit">Excluir</button></td> -->
+                      </tr>       
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+        </div>
     </main>
     <footer>
-
+        <div class="made-with-love">
+            Feito por            
+            <a target="_blank" href="https://github.com/guialvesds">Guilherme Alves</a>
+          </div>
     </footer>
-</body>
+    <script src="../script/initial.js"></script>
+    <script src="../script/calculoEntadas.js"></script>
+    <script src="../script/excluir.js"></script>
+  </body>
 </html>
