@@ -52,7 +52,8 @@ header > .cardFinance {
 .cardFinance .title {
     display: flex;  
     justify-content: center;
-    align-items: center;  
+    align-items: center; 
+    letter-spacing: 2px;
 }
 .cardFinance .title img {
     width: 30px;
@@ -101,6 +102,19 @@ main  #inputNum {
     padding-left: 10px;
     color: gray;
 }
+ main #search{
+    border: none;
+    background-color: white;
+    box-shadow: 0px 2px 10px rgb(141, 141, 141);
+    margin-right: 10px;
+    width: 200px;
+    height: 25px;
+    border-radius: 5px;
+    outline: 0;
+    padding-left: 10px;
+    padding-right: 5px;
+    color: gray;
+ }
 
 main label {
     text-shadow: 0px 1px 5px rgb(228, 225, 225);
@@ -173,21 +187,19 @@ table{
 
   .btnExcluir{
     border: none;
-    background-color: rgb(216, 131, 131);
-    box-shadow: 0px 2px 10px rgb(141, 141, 141);
     margin-left: 10px;
-    width: 85px;
-    height: 25px;
     border-radius: 5px;
     outline: 0;
-    padding-left: 10px;
-    color: white;
+    color: rgb(218, 120, 120);
     cursor: pointer;
+    padding: 30px;
   }
 
-  .btnExcluir:hover{
-    background-color: rgb(204, 96, 96);
-    color: white;
+
+
+  .btnExcluir:hover{  
+    color: rgb(255, 226, 226);
+    background-color: rgb(255, 148, 148);
   }
   
  
@@ -213,6 +225,18 @@ table{
 	transition: 0.5s;
 }
 
+.pEntrada {
+    color: green;
+}
+
+.pSaida{
+    color: red;
+}
+
+
+.invisible {
+    display: none;
+}
 
 
 

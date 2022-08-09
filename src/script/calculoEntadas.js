@@ -4,45 +4,52 @@ let entradas = document.querySelector("#saldEntrada");
 let saidas = document.querySelector("#saldSainda");
 let saldo = document.querySelector("#saldSaldo");
 
-let itens = document.querySelectorAll(".itemConta");
-
 let total = 0;
+let vEntrada;
+let vSaida;
 
-for(let i = 0 ; i < itens.length ; i++ ){   
+async function calculoEntrada() {
+  const res = await fetch("../api/dataTransacoes.json");
+  const data = res.json();
 
-    let item = itens[i];
+  const transacoes = await data;
+  console.log("Dados da APi local: ", transacoes);
 
-    let preco = item.querySelector(".preco").textContent;
-    let tipo = item.querySelector(".tipo").textContent;
-    let valor = +preco
+  for (let i = 0; i < transacoes.length; i++) {
+    let transacoesData = transacoes[i];
+    vEntrada = transacoesData;
+    if (vEntrada.tipo == "Entrada") {
+      vEntrada = transacoesData.preco + total;
 
-    let entrada = "Entrada";
-    let saida = "Saida";
-
-    let somaT = total += valor;
-
-    function soma(){       
-
-        let valorE = somaT;
-
-        if(tipo == entrada){
-            entradas.innerHTML = valorE.toFixed(2);
-        }
-    
+      entradas.innerHTML = vEntrada;
     }
-    function subtrair(){
-        
-        let valorS = somaT;
-
-        if(tipo == saida){
-            saidas.innerHTML = valorS.toFixed(2);
-        }
-    }
-
-    soma();
-    subtrair();
-
+  }
 }
 
+async function calculoSaida() {
+  const res = await fetch("../api/dataTransacoes.json");
+  const data = res.json();
 
+  const transacoes = await data;
+  console.log("Dados da APi local: ", transacoes);
 
+  let transacoesData = transacoes;
+
+  for (let i = 0 ; i < transacoes.length ; i++ ){
+      let  transacoesData = transacoes[i];
+
+      if(transacoesData.tipo == 'Saída'){
+
+          vSaida = transacoesData.preco + total;
+          saidas.innerHTML = vSaida;
+      }
+  }
+}
+
+function saldoA() {
+  saldo.innerHTML = vEntrada - vSaida;
+}
+
+calculoEntrada();
+calculoSaida();
+saldoA();

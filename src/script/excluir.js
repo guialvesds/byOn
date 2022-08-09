@@ -6,7 +6,7 @@ tabelaContas.forEach(function(event){
 
     // let btnExcluirN = document.querySelector(".btnExcluir");
 
-    event.addEventListener('dblclick', function(event){
+    event.addEventListener('click', function(event){
         console.log('Clicado');
         // let alvoEvento = event.target;
         // let paiDoAlvo = alvoEvento.parentNode; //TR = paciente  = revomer

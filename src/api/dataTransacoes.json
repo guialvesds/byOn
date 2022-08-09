@@ -1,0 +1,11 @@
+[
+    {   
+        "id": 1,
+        "nome": "Teste",
+        "data": "2022/08/07",
+        "preco": 50.00,
+        "tipo": "Entrada"  
+    }
+ 
+ 
+]

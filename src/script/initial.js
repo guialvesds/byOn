@@ -1,6 +1,5 @@
 //
 //
-
 let inputDescricao = document.querySelector("#inpuText");
 let inputValor = document.querySelector("#inputNum");
 let btnAdd = document.querySelector("#btnAdd");
@@ -13,25 +12,28 @@ let chekSaid = document.querySelector("#said");
 btnAdd.addEventListener("click", (event) => {
   event.preventDefault();
 
-  if(inputDescricao.value == '' || inputValor== '' || chekEnt.checked == false){
+  if(inputDescricao.value == '' || inputValor.value == ''){
     alert('É necessário preecher todos os campos!')
-  } else{
+  }
+  else{
 
   let form = document.querySelector("#inputForm");
 
   let contas = obterContas(form);
 
-  let contaTr = montaTr(contas);
-
-  console.log("Dados da Tr", contaTr);
-
-  let tabela = document.querySelector("#tabela-contas");
-
-  tabela.appendChild(contaTr);
+  addTransacoesNaTabela(contas); 
 
   form.reset();
+
 }
 });
+
+function addTransacoesNaTabela(contas){
+  let contaTr = montaTr(contas);
+  console.log("Dados da Tr", contaTr);
+  let tabela = document.querySelector("#tabela-contas");
+  tabela.appendChild(contaTr);
+}
 
 function obterContas(form) {
   let conta = {
@@ -43,32 +45,32 @@ function obterContas(form) {
   return conta;
 }
 
-function montaTr(conta) {
+function montaTr(contas) {
   let contaTr = document.createElement("tr");
   contaTr.classList.add("itemConta");
-
+  
+  let nomeN = document.querySelector("#inpuText");
+  let precoN = document.querySelector("#inputNum");
   let data = new Date();
-
   const dataN = data.toLocaleString();
 
-//   let btn = document.createComment("BUTTON");
-
-  contaTr.appendChild(montaTd(conta.descricao, "nome"));
-  contaTr.appendChild(montaTd(dataN, "data"));
-  contaTr.appendChild(montaTd(`R$ ${conta.valor}`, "preco"));
+  contaTr.appendChild(montaTd(contas.nome ? contas.nome : nomeN.value, "nome"));
+  contaTr.appendChild(montaTd(contas.data ? contas.data : dataN, "data"));
+  contaTr.appendChild(montaTd(`R$ ${contas.preco ? contas.preco : precoN.value}`, "preco"));
   tipoEntrada();
-//   contaTr.appendChild(montaTd(btn, "btnExcluir"));
+  contaTr.appendChild(montaTd('Excluir', "btnExcluir"));
 
-  return contaTr;
+    return contaTr;
 
   function tipoEntrada() {
     let tipoE = "Entrada";
     let tipoS = "Saída";
 
     if (chekEnt.checked == true) {
-      contaTr.appendChild(montaTd(tipoE, "tipo"));
-    } else {
-      contaTr.appendChild(montaTd(tipoS, "tipo"));
+      contaTr.appendChild(montaTd(tipoE, "pEntrada"));
+   
+    }  if (chekSaid.checked == true )  {
+      contaTr.appendChild(montaTd(tipoS, "pSaida"));
     }
   }
 }
