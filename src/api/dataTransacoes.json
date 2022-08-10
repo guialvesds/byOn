@@ -1,10 +1,17 @@
 [
     {   
         "id": 1,
-        "nome": "Teste",
+        "nome": "Teste Recebimento",
         "data": "2022/08/07",
-        "preco": 50.00,
+        "preco": "90.00",
         "tipo": "Entrada"  
+    },
+    {   
+        "id": 1,
+        "nome": "Teste Pagamento",
+        "data": "2022/08/07",
+        "preco": "50.00",
+        "tipo": "Saída"  
     }
  
  
