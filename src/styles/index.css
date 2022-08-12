@@ -1,8 +1,9 @@
 
 body {
     /* background-image: url("/src/img/backgroud.jpg"); */
-    /* background-image: linear-gradient( 165deg, #d0ffae,  #34ebe9); */
-    background-size: cover;      
+  background-color: rgb(240, 240, 240);
+    background-size: cover; 
+         
   
 }
 .container {
@@ -11,7 +12,7 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(248, 248, 248);
+   
     /* backdrop-filter: blur(3px); */
 }
 
@@ -22,9 +23,10 @@ main .card {
     align-items: center;
     width: 350px;
     height: 450px;
-    /* background-color: rgba(245, 245, 245, 0.781);
+    background-color: rgb(228, 228, 228);
     border-radius: 10px;
-    box-shadow: 0px 0px 15px rgb(211, 211, 211); */
+    box-shadow: 8px 5px 15px rgb(129, 129, 129);
+   
     
 }
 main .card h1 {
@@ -32,7 +34,7 @@ main .card h1 {
     margin-bottom: 50px;
     font-size: 30px;
     font-weight: bold;
-    /* color: #2c7e43;  */
+    color: #2c7e43; 
     letter-spacing: 3px;
 }
 
@@ -49,12 +51,13 @@ main input {
     color: #5da070;
     font-size: 15px;
     font-weight: 600;
+    background-color: rgb(241, 241, 241);
 }
 
 main label {
     font-size: 14px;
     margin: 10px;
-    /* color: #67a779;  */
+    color: #2c7e43; 
     font-weight: bold;
     text-shadow: 5px, 5px, 15px black;
     letter-spacing: 3px;   

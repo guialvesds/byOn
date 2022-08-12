@@ -3,80 +3,128 @@
 let inputDescricao = document.querySelector("#inpuText");
 let inputValor = document.querySelector("#inputNum");
 let btnAdd = document.querySelector("#btnAdd");
-let btnExcluir = document.querySelector("#btnExcluir");
+let tabelaContasN = document.querySelector("#tabela-contas");
 
-let chekEnt = document.querySelector("#ent");
-let chekSaid = document.querySelector("#said");
+// Configura o armazenamento das transações no Local Storage
+const lSTransacoes = JSON.parse(localStorage.getItem("transacoes"));
+// A const abaixo verifica se a chave transactions do Local Storage
+// é diferente de nulo, para atribuir a variável acima ou, do contrário,
+//um array vazio
+let transacoesStorage =
+  localStorage.getItem("transacoes") !== null ? lSTransacoes : [];
+
+const removeTransacao = (ID) => {
+  // Remove uma transação pelo ID e atualiza no Local Storage e na página
+  transacoesStorage = transacoesStorage.filter(
+    (transacoes) => transacoes.id !== ID
+  );
+  updateLStorage();
+  init();
+};
+
+const addTransacoesNaTabela = (transacoes) => {
+  const tipoClass = "Entrada";
+  const cssClass = transacoes.tipo === tipoClass ? "pEntrada" : "pSaida";
+
+  const contaTr = document.createElement("tr");
+  contaTr.classList.add("itemConta");
+
+  contaTr.innerHTML = `
+<td class="nome">${transacoes.nome}</td>
+<td class="data">${transacoes.data}</td>
+<td class="preco">${transacoes.valor}</td>
+<td class="${cssClass}">${transacoes.tipo}</td>
+<td class='tdButton'>
+<button class="btnExcluir" onClick="removeTransacao(${transacoes.id})">
+    Excluir
+  </button>
+  </td>
+
+`;
+  let tabela = document.querySelector("#tabela-contas");
+  tabela.appendChild(contaTr);
+console.log(contaTr);
+  return contaTr;
+};
+const updateSaldosValues = () => {
+  const saldEntrada = document.querySelector("#saldEntrada");
+  const saldSaida = document.querySelector("#saldSaida");
+  const saldSaldo = document.querySelector("#saldSaldo");
+  // Atualiza o somatório de receitas e despesas e o saldo
+  const valoresTransacoes = transacoesStorage.map(
+    (transacoes) => transacoes.valor
+  );
+
+  const entradas = valoresTransacoes
+  .filter(value => value > 0)
+  .reduce((acumulado, value) => acumulado + value, 0)
+  .toFixed(2)
+    
+  const saidas =
+    valoresTransacoes
+    .filter(value => value < 0)
+    .reduce((acumulado, value) => acumulado + value, 0)
+    .toFixed(2)
+  
+  const total = valoresTransacoes
+    .reduce((acumulado, transacoes) => acumulado + transacoes, 0)
+   
+  saldEntrada.textContent = `R$ ${entradas}`;
+  saldSaida.textContent = `R$ ${saidas}`;
+  saldSaldo.textContent = `R$ ${total}`;
+};
+
+const init = () => {
+  // Executa o preenchimento na página
+  tabelaContasN.innerHTML = "";
+  transacoesStorage.forEach(addTransacoesNaTabela);
+  updateSaldosValues();
+};
+
+init();
+
+const updateLStorage = () => {
+  localStorage.setItem("transacoes", JSON.stringify(transacoesStorage));
+};
+
+//Gerar Id aleatório
+const gerarID = () => Math.round(Math.random() * 1000);
 
 btnAdd.addEventListener("click", (event) => {
   event.preventDefault();
 
-  if (inputDescricao.value == "" || inputValor.value == "") {
-    alert("É necessário preecher todos os campos!");
-  } else {
-    let form = document.querySelector("#inputForm");
+  let chekEnt = document.querySelector("#ent");
+  let chekSaid = document.querySelector("#said");
 
-    let contas = obterContas(form);
+  const trNome = inputDescricao.value;
+  const trValor = inputValor.value;
+  const dataN = new Date().toLocaleString();
 
-    addTransacoesNaTabela(contas);
+  const tipoE = "Entrada";
+  const tipoS = "Saída";
 
-    form.reset();
+  if (inputDescricao.value === "" || inputValor.value === "") {
+    alert("É necessário preencher todos os campos");
+    return;
   }
-});
 
-function addTransacoesNaTabela(contas) {
-  let contaTr = montaTr(contas);
-  console.log("Dados da Tr", contaTr);
-  let tabela = document.querySelector("#tabela-contas");
-  tabela.appendChild(contaTr);
-}
-
-function obterContas(form) {
-  let conta = {
-    descricao: form.inpuText.value,
-    valor: form.inputNum.value,
-    tEntrada: form.ent.value,
-    tSaida: form.said.value,
+  //cria objeto
+  const transacoes = {
+    id: gerarID(),
+    nome: trNome,
+    valor: Number(trValor),
+    data: dataN,
+    tipo: chekEnt.checked == true ? tipoE : tipoS,
   };
-  return conta;
-}
 
-function montaTr(contas) {
-  let contaTr = document.createElement("tr");
-  contaTr.classList.add("itemConta");
+  console.log(transacoes);
 
-  let nomeN = document.querySelector("#inpuText");
-  let precoN = document.querySelector("#inputNum");
-  let data = new Date();
-  const dataN = data.toLocaleString();
+  transacoesStorage.push(transacoes);
+  init();
+  updateLStorage();
 
-  contaTr.appendChild(montaTd(contas.nome ? contas.nome : nomeN.value, "nome"));
-  contaTr.appendChild(montaTd(contas.data ? contas.data : dataN, "data"));
-  contaTr.appendChild(
-    montaTd(`R$ ${contas.preco ? contas.preco : precoN.value}`, "preco")
-  );
-  tipoEntrada();
-  contaTr.appendChild(montaTd("Excluir", "btnExcluir"));
-
-  function tipoEntrada() {
-    let tipoE = "Entrada";
-    let tipoS = "Saída";
-
-    if (chekEnt.checked == true || contas.tipo == "Entrada") {
-      contaTr.appendChild(montaTd(tipoE, "pEntrada"));
-    }
-    if (chekSaid.checked == true || contas.tipo == "Saída") {
-      contaTr.appendChild(montaTd(tipoS, "pSaida"));
-    }
-  }
-
-  return contaTr;
-}
-
-function montaTd(dado, classe) {
-  let td = document.createElement("td");
-  td.textContent = dado;
-  td.classList.add(classe);
-
-  return td;
-}
+  inputDescricao.value = "";
+  inputValor.value = "";
+  chekEnt.checked = false;
+  chekSaid.checked = false;
+});
