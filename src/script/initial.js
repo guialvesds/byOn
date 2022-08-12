@@ -43,7 +43,7 @@ const addTransacoesNaTabela = (transacoes) => {
 `;
   let tabela = document.querySelector("#tabela-contas");
   tabela.appendChild(contaTr);
-console.log(contaTr);
+  console.log(contaTr);
   return contaTr;
 };
 const updateSaldosValues = () => {
@@ -56,19 +56,20 @@ const updateSaldosValues = () => {
   );
 
   const entradas = valoresTransacoes
-  .filter(value => value > 0)
-  .reduce((acumulado, value) => acumulado + value, 0)
-  .toFixed(2)
-    
-  const saidas =
-    valoresTransacoes
-    .filter(value => value < 0)
+    .filter((value) => value > 0)
     .reduce((acumulado, value) => acumulado + value, 0)
-    .toFixed(2)
-  
-  const total = valoresTransacoes
-    .reduce((acumulado, transacoes) => acumulado + transacoes, 0)
-   
+    .toFixed(2);
+
+  const saidas = valoresTransacoes
+    .filter((value) => value < 0)
+    .reduce((acumulado, value) => acumulado + value, 0)
+    .toFixed(2);
+
+  const total = valoresTransacoes.reduce(
+    (acumulado, transacoes) => acumulado + transacoes,
+    0
+  ).toFixed(2);
+
   saldEntrada.textContent = `R$ ${entradas}`;
   saldSaida.textContent = `R$ ${saidas}`;
   saldSaldo.textContent = `R$ ${total}`;
