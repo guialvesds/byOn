@@ -208,9 +208,10 @@ table{
     outline: 0;
     color: rgb(15, 80, 58);
     cursor: pointer;
-   width: 100px;
-   height: 45px;
-   margin-top: 5px;
+    width: 100px;
+    height: 45px;
+    margin-top: 5px;
+    background-color: rgb(228, 228, 228);
   }
 
   .btnExcluir:hover{  
@@ -243,6 +244,7 @@ table{
 
 .pEntrada {
     color: green;
+    
 }
 
 .pSaida{

@@ -50,7 +50,7 @@ const updateSaldosValues = () => {
   const saldEntrada = document.querySelector("#saldEntrada");
   const saldSaida = document.querySelector("#saldSaida");
   const saldSaldo = document.querySelector("#saldSaldo");
-  // Atualiza o somatório de receitas e despesas e o saldo
+  // Atualiza o somatório de entradas, saídas e o saldo
   const valoresTransacoes = transacoesStorage.map(
     (transacoes) => transacoes.valor
   );
@@ -65,10 +65,9 @@ const updateSaldosValues = () => {
     .reduce((acumulado, value) => acumulado + value, 0)
     .toFixed(2);
 
-  const total = valoresTransacoes.reduce(
-    (acumulado, transacoes) => acumulado + transacoes,
-    0
-  ).toFixed(2);
+  const total = valoresTransacoes
+    .reduce((acumulado, transacoes) => acumulado + transacoes, 0)
+    .toFixed(2);
 
   saldEntrada.textContent = `R$ ${entradas}`;
   saldSaida.textContent = `R$ ${saidas}`;
@@ -98,27 +97,44 @@ btnAdd.addEventListener("click", (event) => {
   let chekSaid = document.querySelector("#said");
 
   const trNome = inputDescricao.value;
-  const trValor = inputValor.value;
   const dataN = new Date().toLocaleString();
 
   const tipoE = "Entrada";
   const tipoS = "Saída";
 
-  if (inputDescricao.value === "" || inputValor.value === "") {
-    alert("É necessário preencher todos os campos");
+  if (
+    inputDescricao.value === "" ||
+    inputValor.value === "" ||
+    chekEnt.checked == false &&
+    chekSaid.checked == false
+  ) {
+    ExibirModal("Ops... É necessário preencher todos os campos!");
     return;
   }
 
-  //cria objeto
+  const validaNumber = () => {
+    let trValor;
+
+    if (chekSaid.checked) {
+      newValor = `${-inputValor.value}`;
+      trValor = parseFloat(newValor);
+    } else {
+      trValor = +inputValor.value;
+    }
+
+    return trValor;
+  };
+
+  //cria o objeto no storage
   const transacoes = {
     id: gerarID(),
     nome: trNome,
-    valor: Number(trValor),
+    valor: validaNumber(),
     data: dataN,
     tipo: chekEnt.checked == true ? tipoE : tipoS,
   };
 
-  console.log(transacoes);
+  console.log("Criado com sucesso!");
 
   transacoesStorage.push(transacoes);
   init();

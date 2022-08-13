@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/initial.css" />
+    <link rel="stylesheet" href="../styles/modal.css" />
     <link rel="shortcut icon" href="../img/page-ico.ico" type="image/x-icon" />
     <title>ByOn | Initial</title>
   </head>
@@ -42,10 +43,7 @@
             <label for="said">Saída</label>
             <input type="checkbox" name="said" id="said" />
             <button type="submit" id="btnAdd">Adicionar</button>
-        </form>  
-        <div class="information">
-          <h2>Utilize valor negativo para o tipo saída.</h2>
-        </div>  
+        </form>   
         <div class="tableSection">
             <section>
                 <div class="tbl-header">
@@ -64,34 +62,30 @@
                 <div class="tbl-content">
                   <table cellpadding="0" cellspacing="0">
                     <tbody id="tabela-contas">
-                      <!-- <tr class="itemConta">
-                        <td class="nome">Pagamento conta Anná</td>
-                        <td class="data">07/08/2022</td>
-                        <td class="preco">50.00</td>
-                        <td class="tipo">Entrada</td>
-                        <td class="btnExcluir">Excluir</td>
-                      </tr>  
-                      <tr class="itemConta">
-                        <td class="nome">Pagamento conta Anná</td>
-                        <td class="data">07/08/2022</td>
-                        <td class="preco">50.00</td>
-                        <td class="tipo">Saida</td>
-                        <td class="btnExcluir">Excluir</td>
-                      </tr>        -->
                     </tbody>
                   </table>
                 </div>
               </section>
         </div>
+        <div class="modal">
+          <div class="modalContent">
+              <span class="closeButton">×</span>
+              <div class="contentImgText">
+                <img src="/src/img/Personal finance-amico.png" alt="error" id="img">
+              <h2 id="infoH1"></h2>
+              </div>
+          </div>
+      </div>
     </main>
     <footer>
+    
         <div class="pessoal">
             Feito por            
             <a target="_blank" href="https://github.com/guialvesds">Guilherme Alves</a>
           </div>
     </footer>
     <script src="../script/initial.js"></script> 
-    <!-- <script src="../script/excluir.js"></script>  -->
+    <script src="../script/modal.js"></script> 
     <script src="../script/search.js"></script>   
   </body>
 </html>
