@@ -6,7 +6,7 @@ const img = document.querySelector("#img");
 function ExibirModal(texto) {
     modal.classList.toggle("showModal");
     infoH1.innerText = texto;
-    img.src = `/src/img/Personal finance-amico.png`;
+    img.src = '../img/Personal finance-amico.png';
 }
 
 closeButton.addEventListener("click", ExibirModal);
